@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const productScheme = new Schema(
+const cartScheme = new Schema(
   {
     name: {
       type: String,
@@ -22,12 +22,20 @@ const productScheme = new Schema(
     createdBy: {
       type: mongoose.Types.ObjectId,
       ref: "User",
-      required: [true, "Please provide user"],
+      required: [true, "Please provide user id"],
+      unique: false,
+    },
+    pid: {
+      type: mongoose.Types.ObjectId,
+      required: [true, "Please provide pid"],
+      // unique: [true, "Product is already in the cart"],
+      unique: false,
     },
   },
   { timestamps: true }
 );
+cartScheme.index({ pid: 1, createdBy: 1 }, { unique: true });
 
-const Product = mongoose.model("Product", productScheme);
+const Cart = mongoose.model("Cart", cartScheme);
 
-module.exports = Product;
+module.exports = Cart;
