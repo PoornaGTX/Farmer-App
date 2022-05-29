@@ -99,7 +99,7 @@ app.post("/api/payment", (req, res) => {
         service: "gmail",
         auth: {
           user: "IT20231514@my.sliit.lk",
-          pass: "199829601556",
+          pass: "",
         },
       });
 
