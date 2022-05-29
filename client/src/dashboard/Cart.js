@@ -98,13 +98,7 @@ const Cart = () => {
       console.log(error);
     }
   };
-  function getColorOftheRow(value, item) {
-    const { quantity, qty } = item;
-    if (qty <= quantity) return "red";
-    else if (qty >= quantity) return "green";
-    // add as many conditions as you want
-    else return "white";
-  }
+
   return (
     <Wrapper>
       <style>
@@ -138,12 +132,7 @@ td, th {
               .sort((a, b) => (a.price > b.price ? 1 : -1))
               .map((item) => {
                 return (
-                  <tr
-                    key={item._id}
-                    style={{
-                      backgroundColor: getColorOftheRow(item.qty, item),
-                    }}
-                  >
+                  <tr key={item._id}>
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     <td>{item.qty}</td>
@@ -180,7 +169,7 @@ td, th {
         <StripeCheckOut
           stripeKey="pk_test_51Kys8xAcq45WQRykPV7TCFsXqaJIFGiV8fFuEHFbD8wGLpr0HCRraY5tuAfvSBrhCP5rxwht4lU2hC4iK7gh23Xg00ZBfsJDMu"
           token={makePayment}
-          name="Buy react"
+          name="Buy Farmer App"
           amount={Total * 100}
           billingAddress
           shippingAddress
